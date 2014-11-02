@@ -23,14 +23,5 @@ public interface ProcessingViolationCode {
    */
   public char getErrorType();
 
-  /**
-   * This method me
-   * <P>
-   * <B>Precondition:</B> TODO<BR>
-   * <B>Postcondition:</B> TODO
-   * </P>
-   * 
-   * @return
-   */
   public String name();
 }

@@ -9,4 +9,5 @@ package com.github.christophelg.processingchains.framework;
 public interface Processor<I> extends ExceptionHandler<I, Exception> {
 
   I process(Context context, I value) throws Exception;
+
 }

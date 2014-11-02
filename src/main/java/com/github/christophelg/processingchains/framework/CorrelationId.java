@@ -12,7 +12,4 @@ public interface CorrelationId {
 
   String getObjectId();
 
-  // TODO:
-  // Maybe we could add this method to make this interface more useful
-  // String[] getComponents();
 }
