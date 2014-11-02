@@ -17,7 +17,7 @@ The Processing Chains framework helps to structure and organize those steps.
 Solution
 --------
 
-The idea is to create components that can be re-use accross processing chains in a **type-safe** manner.
+The idea is to create components that can be re-used accross processing chains in a **type-safe** manner.
 Typically a component will either convert the item of data or perform some business action, so the framework
 exposes 2 simple interfaces.
 
@@ -31,6 +31,15 @@ public interface Converter<I, O> {
 }
 ```
 
+Then via the ProcessingChainBuilder, one can compose the components to create the chain:
+
+```java
+	ProcessingChainBuilder builder = new ProcessingChainBuilder();
+	builder.add(new Converter<String, Date)()).add(new Processor<Date>()).add(new Converter<Date, Integer>());
+	ProcessingChain<String, Integer> chain = builder.build();
+	Integer result = chain.process(..., "some input data");
+```
+
 Examples
 --------
 
@@ -39,11 +48,10 @@ Look in the unittests folder for some basic example.
 Related works
 -------------
 
-If you want to look at more advanced frameworks
+If you want to look at more advanced frameworks, you should take a look at:
 
 disruptor:
 http://lmax-exchange.github.io/disruptor/
-
 
 CSP:
 http://www.cs.kent.ac.uk/projects/ofa/jcsp/
