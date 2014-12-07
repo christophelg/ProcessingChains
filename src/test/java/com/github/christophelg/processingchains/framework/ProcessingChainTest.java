@@ -8,6 +8,8 @@ public class ProcessingChainTest extends TestCase {
     ProcessingChain<String, String> toTest = ProcessingChainBuilder.build(new TestProcessor());
     String result = toTest.process(new Context(null), "1");
     assertTrue(result.equals("11"));
+
+
   }
 
   public static class TestProcessor implements Processor<String> {
@@ -40,4 +42,15 @@ public class ProcessingChainTest extends TestCase {
     }
   }
 
+  public void testFailConverter() throws ProcessingException {
+    ProcessingChain<String, Integer> toTest =
+        ProcessingChainBuilder.build(new TestProcessor()).add(new TestConverter());
+    try {
+      toTest.process(new Context(null), "x");
+      assertFalse(true);
+    } catch (ProcessingException pe) {
+      assertTrue(true);
+    }
+
+  }
 }
